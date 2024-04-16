@@ -1,5 +1,5 @@
 import "~/styles/globals.css";
-
+import Image from 'next/image'
 import { Inter } from "next/font/google";
 
 const inter = Inter({
@@ -13,6 +13,35 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
+function TopNav() {
+  return (
+    <nav className="flex items-center justify-between w-full p-4 text-xl font-semibold border-b">
+      <div>Home </div>
+      <div>About Me</div>
+      <div className="max-w-8 max-h-8">
+        <a href="https://github.com/muh5329">
+          <Image
+            src="/icons/github-mark.png"
+            width={500}
+            height={500}
+            alt="github Logo"
+          />
+        </a>
+      </div>
+      <div className="max-w-8 max-h-8">
+        <a href="https://github.com/muh5329">
+          <Image
+            src="/icons/In-Blue.png"
+            width={500}
+            height={500}
+            alt="LinkedIn Logo"
+          />
+        </a>
+      </div>
+    </nav>
+  );
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -20,7 +49,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>{children}</body>
+      <body className={`font-sans ${inter.variable} flex flex-col gap-4`}>
+        <TopNav />
+        {children}
+      </body>
     </html>
   );
 }

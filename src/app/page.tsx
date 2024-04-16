@@ -1,8 +1,42 @@
 import Link from "next/link";
 
+
+const blocks = [
+  {
+    "title": "title",
+    "image": "image/path",
+    "description": " a little site thats magic",
+    "url": "www.google.com"
+  }, {
+    "title": "title",
+    "image": "image/path",
+    "description": " a little site thats magic",
+    "url": "www.google.com"
+  }, {
+    "title": "title",
+    "image": "image/path",
+    "description": " a little site thats magic",
+    "url": "www.google.com"
+  }, {
+    "title": "title",
+    "image": "image/path",
+    "description": " a little site thats magic",
+    "url": "www.google.com"
+  },
+
+
+];
+
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+    <main className="">
+      <div className="  grid gap-4 grid-cols-3 grid-rows-3">
+        {blocks.map((block) => (
+          <div>
+            <div>{block.title}</div>
+          </div>
+        ))}
+      </div>
       Hello (Profile Page in progress)
     </main>
   );
