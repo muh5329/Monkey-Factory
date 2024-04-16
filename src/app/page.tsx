@@ -31,9 +31,9 @@ export default function HomePage() {
   return (
     <main className="">
       <div className="  grid gap-4 grid-cols-3 grid-rows-3">
-        {blocks.map((block) => (
-          <div>
-            <div>{block.title}</div>
+        {blocks.map((block, index) => (
+          <div key={index}>
+            <div key={index + "inner"}>{block.title}</div>
           </div>
         ))}
       </div>
