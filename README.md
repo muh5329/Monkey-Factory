@@ -2,7 +2,7 @@
 
 ## TODO
   
-- [] Make it deploy [aws amplify]
+- [X] Make it deploy [aws amplify]
 - [] Mock UI with fake data 
 - [] Fire up Postgres DB [aws ec2]
 - [] Hook Up data
