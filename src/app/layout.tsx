@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 import Image from 'next/image'
 import { Inter } from "next/font/google";
 
+import Link from "next/link";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -16,8 +17,8 @@ export const metadata = {
 function TopNav() {
   return (
     <nav className="flex items-center justify-between w-full p-4 text-xl font-semibold border-b">
-      <div>Home </div>
-      <div>About Me</div>
+      <div> <Link href="/">Home</Link></div>
+      <div> <Link href="/aboutme">About Me</Link></div>
       <div className="max-w-8 max-h-8">
         <a href="https://github.com/muh5329">
           <Image
@@ -39,7 +40,7 @@ function TopNav() {
           />
         </a>
       </div>
-    </nav>
+    </nav >
   );
 }
 
