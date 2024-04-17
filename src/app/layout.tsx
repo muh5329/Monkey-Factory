@@ -31,7 +31,7 @@ function TopNav() {
       </div>
 
       <div className="max-w-8 max-h-8">
-        <a href="https://github.com/muh5329">
+        <a href="www.linkedin.com/in/muneeb-haq-87b96098">
           <Image
             src="/icons/In-Blue.png"
             width={500}
