@@ -34,6 +34,7 @@ const blocks = [
 export default function HomePage() {
   return (
     <main className="">
+      <div className=" text-4xl">Site in Construction....</div>
       <div className="  grid gap-4 grid-cols-3 grid-rows-3">
         {blocks.map((block, index) => (
           <div className="border" key={index}>
