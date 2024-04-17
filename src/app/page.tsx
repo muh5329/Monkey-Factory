@@ -36,12 +36,13 @@ export default function HomePage() {
     <main className="">
       <div className="  grid gap-4 grid-cols-3 grid-rows-3">
         {blocks.map((block, index) => (
-          <div key={index}>
+          <div className="border" key={index}>
             <a href={block.url}>
               <Image
                 src={block.image}
-                width={500}
-                height={500}
+                width={300}
+                style={{ objectFit: "cover" }}
+                height={200}
                 alt="LinkedIn Logo"
                 key={index + "img"}
               />
