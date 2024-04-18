@@ -20,15 +20,7 @@ const blocks = [
     "description": " a little site thats magic",
     "url": "www.google.com",
     "gh": "https://github.com/muh5329/WaveCollapseEditor"
-  }, {
-    "title": "title",
-    "image": "/icons/git-lnk.png",
-    "description": " a little site thats magic",
-    "url": "www.google.com",
-    "gh": "https://github.com/muh5329/WaveCollapseEditor"
   },
-
-
 ];
 
 export default function HomePage() {
@@ -37,7 +29,7 @@ export default function HomePage() {
       <div className=" text-4xl">Site in Construction....</div>
       <div className="  grid gap-4 grid-cols-3 grid-rows-3">
         {blocks.map((block, index) => (
-          <div className="border" key={index}>
+          <div className="border rounded-lg" key={index}>
             <a href={block.url}>
               <Image
                 src={block.image}
