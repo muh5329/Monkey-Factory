@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function HomePage() {
   return (
-    <main className=" bg-red-400 h-full pt-1 text-zinc-900 font-medium font-scopeone">
+    <main className=" bg-red-400 h-full pt-1 text-zinc-900 font-medium font-scopeone z-0">
 
       <div className="justify-start pl-4 text-lg pt-4 ">
         <div>

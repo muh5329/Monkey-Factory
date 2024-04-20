@@ -46,11 +46,10 @@ export function ComboboxDropdownMenu() {
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="sm">
-            <MoreHorizontal />
+            [menu]
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[200px]">
-          <DropdownMenuLabel>[menu]</DropdownMenuLabel>
           <DropdownMenuGroup>
             <DropdownMenuItem>
               [home]

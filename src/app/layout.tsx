@@ -16,7 +16,7 @@ export const metadata = {
 
 function TopNav() {
   return (
-    <nav className="">
+    <nav className="z-10 absolute top-0 right-0">
       {/* <div className="p-4"> <Link href="/">Home</Link></div> */}
       {/* <div className="p-4"> <Link href="/aboutme">About Me</Link></div> */}
       {/* <div className="p-4"> */}
