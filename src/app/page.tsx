@@ -1,8 +1,18 @@
 
 import Image from 'next/image'
+import { type } from 'os';
 
 
-const SlidingPage = (props: any) => {
+interface SlidingPage {
+  pageNumber: string;
+  optionalName?: string;
+  mainImage: string;
+  pageSubtitle: string;
+  linkTitle: string;
+}
+
+
+const SlidingPage = (props: SlidingPage) => {
   return (
     <div className="flex flex-col justify-between">
       <div className="">
