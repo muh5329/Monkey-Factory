@@ -45,7 +45,7 @@ export function ComboboxDropdownMenu() {
       </p>
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
-          <Button variant="link" size="sm">
+          <Button variant="default" size="sm">
             [menu]
           </Button>
         </DropdownMenuTrigger>

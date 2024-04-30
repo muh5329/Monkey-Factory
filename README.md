@@ -10,4 +10,5 @@ A portfolio website that acts as a resume and a showcase of all the fun projects
 [![shadercn](https://img.shields.io/badge/ShaderCN/UI-black.svg)](https://ui.shadcn.com/docs)
 
 
+[![useGSAP](https://img.shields.io/badge/useGSAP/UI-green.svg)](https:/gsap.com)
   
