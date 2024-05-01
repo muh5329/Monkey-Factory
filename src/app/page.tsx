@@ -4,16 +4,28 @@ import Image from 'next/image'
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef, useState } from "react";
+
 interface SlidingPage {
   pageNumber: string;
   optionalName?: string;
   mainImage: string;
   pageSubtitle: string;
   linkTitle: string;
+  selected: boolean;
 }
 
 
 const SlidingPage = (props: SlidingPage) => {
+  const subtitleRef = useRef(null);
+  useGSAP(() => {
+
+    if (props.selected) {
+      gsap.to(subtitleRef.current, { fontSize: '100px' });
+    } else {
+      gsap.to(subtitleRef.current, { fontSize: '15px' });
+    }
+  }, [props.selected]);
+
   return (
     <div className="flex flex-col justify-between h-dvh">
       <div className="">
@@ -21,59 +33,62 @@ const SlidingPage = (props: SlidingPage) => {
           {props.optionalName}
         </div>
       </div>
+      {props.selected &&
 
-      <div className="flex pt-1 h-[75%]">
-        <div className="w-10 pt-4 pl-4  text-lg">
-          {"[" + props.pageNumber + "]"}
-        </div>
-
-        <div className="justify-start pl-16 pt-6">
-
-          <div className="shadow-lg ">
-            <Image
-              src={props.mainImage}
-              width="0"
-              alt=''
-              height="0"
-              sizes="100vw"
-              style={{ width: '100%', height: '100%' }}
-            />
+        <div className="flex pt-1 h-[75%]">
+          <div className="w-10 pt-4 pl-4  text-lg">
+            {"[" + props.pageNumber + "]"}
           </div>
 
+          <div className="justify-start pl-16 pt-6">
+
+            <div className="shadow-lg ">
+              <Image
+                src={props.mainImage}
+                width={500}
+                height={500}
+                alt="Picture of the author"
+              />
+            </div>
+
+
+          </div>
 
         </div>
 
-      </div>
-
+      }
       <div className="flex justify-between pl-4 ">
 
-        <div className="w-[75%] ">
+        <div className="w-[60%] align-text-top text-[15px] " ref={subtitleRef}>
           {props.pageSubtitle}
         </div>
 
-        <div className="pr-10 grid grid-rows-2 grid-cols-1 gap-1 w-[25%] ">
-          <div className=''></div>
+        {props.selected &&
+          <div className="pr-10 grid grid-rows-2 grid-cols-1 gap-1 w-[30%] ">
+            <div />
 
-          <div className=''>
-            {/* line of full width */}
-            <div className="border border-zinc-900  " />
+            <div className=''>
+              {/* line of full width */}
+              <div className="border border-zinc-900 " />
 
-            {/* subtitle */}
-            <div className="flex justify-between pt-2 ">
+              {/* subtitle */}
+              <div className="flex justify-between pt-2 ">
 
-              <div className=" text-xs ">
-                {props.linkTitle}
-              </div>
+                <div className=" text-m ">
+                  {props.linkTitle}
+                </div>
 
-              <div className="">
-                {"-->"}
+                <div className="">
+                  {"-->"}
+                </div>
+
               </div>
 
             </div>
 
           </div>
 
-        </div>
+        }
 
       </div>
     </div >
@@ -91,22 +106,29 @@ export default function HomePage() {
 
   const { contextSafe } = useGSAP();
 
-
   const slidingPageOnClick = contextSafe((ref: any) => {
     setSelectedPage(ref)
     for (let page of pages) {
       if (page == ref) {
         gsap.to(page.current, { width: '100%' })
       } else {
-        gsap.to(page.current, { width: 150 })
+        gsap.to(page.current, { width: 160 })
       }
     }
 
   });
 
 
+  const isSelected = (ref: any) => {
+    return ref.current && selectedPage.current && ref.current == selectedPage.current;
+  }
+  const isSelectedDefaultRender = (ref: any) => {
+    return ref.current == selectedPage.current;
+  }
+
+
   return (
-    <main className='flex flex-row w-[100%]'>
+    <main className='flex flex-row w-[100%] overflow-hidden'>
 
       <div ref={aboutRef} onClick={() => slidingPageOnClick(aboutRef)} className="w-[80%] bg-red-400 pt-1 text-zinc-900 font-medium font-scopeone z-0 h-dvh">
         <SlidingPage
@@ -115,6 +137,7 @@ export default function HomePage() {
           mainImage="/rooms/room_1.jpg"
           pageSubtitle="About Me"
           linkTitle="More About Me"
+          selected={isSelectedDefaultRender(aboutRef)}
         />
       </div>
 
@@ -124,6 +147,7 @@ export default function HomePage() {
           mainImage="/rooms/room_1.jpg"
           pageSubtitle="Projects"
           linkTitle="See my projects"
+          selected={isSelected(projectsRef)}
         />
       </div>
 
@@ -134,6 +158,7 @@ export default function HomePage() {
           mainImage="/rooms/room_1.jpg"
           pageSubtitle="Socials"
           linkTitle="See my socials"
+          selected={isSelected(socialsRef)}
         />
       </div>
 
