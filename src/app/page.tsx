@@ -60,20 +60,21 @@ const SlidingPage = (props: SlidingPage) => {
       }
       <div className="flex justify-between pl-4 ">
 
-        <div className="w-[60%] align-text-top text-[15px] " ref={subtitleRef}>
+        <div className="w-[60%] align-text-top  text-[15px] pb-10 " ref={subtitleRef}>
           {props.pageSubtitle}
         </div>
 
         {props.selected &&
-          <div className="pr-10 grid grid-rows-2 grid-cols-1 gap-1 w-[30%] ">
-            <div />
+          <div className="grid grid-rows-3 grid-flow-col gap-4 w-[30%] pr-7 ">
 
-            <div className=''>
+            <div className='row-span-1' />
+
+            <div className=' row-span-2'>
               {/* line of full width */}
               <div className="border border-zinc-900 " />
 
               {/* subtitle */}
-              <div className="flex justify-between pt-2 ">
+              <div className="flex justify-between pt-2 row-span-5 ">
 
                 <div className=" text-m ">
                   {props.linkTitle}
@@ -113,7 +114,7 @@ export default function HomePage() {
       if (page == ref) {
         gsap.to(page.current, { width: '100%' })
       } else {
-        gsap.to(page.current, { width: 160 })
+        gsap.to(page.current, { width: 180 })
       }
     }
 
