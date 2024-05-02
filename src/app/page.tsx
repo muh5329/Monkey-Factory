@@ -4,6 +4,7 @@ import Image from 'next/image'
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef, useState } from "react";
+import React from 'react'
 
 interface SlidingPage {
   pageNumber: string;
@@ -11,12 +12,12 @@ interface SlidingPage {
   mainImage: string;
   pageSubtitle: string;
   linkTitle: string;
-  selected: boolean;
+  selected: boolean | null;
 }
 
 
 const SlidingPage = (props: SlidingPage) => {
-  const subtitleRef = useRef(null);
+  const subtitleRef: React.RefObject<HTMLDivElement> = useRef(null);
   useGSAP(() => {
 
     if (props.selected) {
@@ -96,9 +97,9 @@ const SlidingPage = (props: SlidingPage) => {
 }
 
 export default function HomePage() {
-  const aboutRef = useRef(null);
-  const projectsRef = useRef(null);
-  const socialsRef = useRef(null);
+  const aboutRef: React.RefObject<HTMLDivElement> = useRef(null);
+  const projectsRef: React.RefObject<HTMLDivElement> = useRef(null);
+  const socialsRef: React.RefObject<HTMLDivElement> = useRef(null);
 
   const pages = [aboutRef, projectsRef, socialsRef];
 
@@ -106,9 +107,9 @@ export default function HomePage() {
 
   const { contextSafe } = useGSAP();
 
-  const slidingPageOnClick = contextSafe((ref: any) => {
+  const slidingPageOnClick = contextSafe((ref: React.RefObject<HTMLDivElement>) => {
     setSelectedPage(ref)
-    for (let page of pages) {
+    for (const page of pages) {
       if (page == ref) {
         gsap.to(page.current, { width: '100%' })
       } else {
@@ -119,10 +120,10 @@ export default function HomePage() {
   });
 
 
-  const isSelected = (ref: any) => {
+  const isSelected = (ref: React.RefObject<HTMLDivElement>) => {
     return ref.current && selectedPage.current && ref.current == selectedPage.current;
   }
-  const isSelectedDefaultRender = (ref: any) => {
+  const isSelectedDefaultRender = (ref: React.RefObject<HTMLDivElement>) => {
     return ref.current == selectedPage.current;
   }
 
