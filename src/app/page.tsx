@@ -65,7 +65,7 @@ const SlidingPage = (props: SlidingPage) => {
         </div>
 
         {props.selected &&
-          <div className="grid grid-rows-3 grid-flow-col gap-4 w-[30%] pr-7 ">
+          <div className="grid grid-rows-3 grid-flow-col gap-3 w-[30%] pr-7 ">
 
             <div className='row-span-1' />
 
@@ -146,6 +146,7 @@ export default function HomePage() {
       <div ref={projectsRef} onClick={() => slidingPageOnClick(projectsRef)} className="w-[150px] bg-yellow-500 pt-1 text-zinc-900 font-medium font-scopeone z-0 h-dvh">
         <SlidingPage
           pageNumber="02"
+          optionalName=". "
           mainImage="/rooms/room_1.jpg"
           pageSubtitle="Projects"
           linkTitle="See my projects"
@@ -157,6 +158,7 @@ export default function HomePage() {
       <div ref={socialsRef} onClick={() => slidingPageOnClick(socialsRef)} className="w-[150px] bg-blue-500 pt-1 text-zinc-900 font-medium font-scopeone z-0 h-dvh">
         <SlidingPage
           pageNumber="03"
+          optionalName=". "
           mainImage="/rooms/room_1.jpg"
           pageSubtitle="Socials"
           linkTitle="See my socials"
