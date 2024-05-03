@@ -18,12 +18,15 @@ interface SlidingPage {
 
 const SlidingPage = (props: SlidingPage) => {
   const subtitleRef: React.RefObject<HTMLDivElement> = useRef(null);
+  const imageConRef: React.RefObject<HTMLDivElement> = useRef(null);
   useGSAP(() => {
 
     if (props.selected) {
       gsap.to(subtitleRef.current, { fontSize: '100px' });
+      gsap.to(imageConRef.current, { width: '600px' });
     } else {
       gsap.to(subtitleRef.current, { fontSize: '15px' });
+      gsap.to(imageConRef.current, { width: '15px' });
     }
   }, [props.selected]);
 
@@ -34,30 +37,32 @@ const SlidingPage = (props: SlidingPage) => {
           {props.optionalName}
         </div>
       </div>
-      {props.selected &&
 
-        <div className="flex pt-1 h-[75%]">
+      <div className="flex pt-1 h-[75%]">
+
+        {props.selected &&
           <div className="w-10 pt-4 pl-4  text-lg">
             {"[" + props.pageNumber + "]"}
           </div>
+        }
 
-          <div className="justify-start pl-16 pt-6">
+        <div className="justify-start pl-16 pt-6">
 
-            <div className="shadow-lg ">
-              <Image
-                src={props.mainImage}
-                width={500}
-                height={500}
-                alt="Picture of the author"
-              />
-            </div>
-
-
+          <div ref={imageConRef} className="shadow-lg w-[1000px] h-[500px] overflow-hidden relative">
+            <Image
+              src={props.mainImage}
+              layout='fill'
+              alt="Picture of the author"
+              objectFit='cover'
+            />
           </div>
+
 
         </div>
 
-      }
+      </div>
+
+
       <div className="flex justify-between pl-4 ">
 
         <div className="w-[60%] align-text-top  text-[15px] pb-10 " ref={subtitleRef}>
