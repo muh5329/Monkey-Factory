@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import React from 'react'
 
 interface SlidingPage {
@@ -17,21 +17,69 @@ interface SlidingPage {
 
 
 const SlidingPage = (props: SlidingPage) => {
+
+  const responsiveSizes = {
+    mobile: {
+      image: { width: "150px", height: "200px" },
+      subTile: { fontSize: "50px" },
+    },
+    medium: {
+      image: { width: "500px", height: "500px" },
+      subTile: { fontSize: "60px" },
+    },
+    large: {
+      image: { width: "700px", height: "500px" },
+      subTile: { fontSize: "100px" },
+    }
+  }
+
+  const [currentSizes, setCurrentSizes] = useState(responsiveSizes.medium);
+
+
   const subtitleRef: React.RefObject<HTMLDivElement> = useRef(null);
   const imageConRef: React.RefObject<HTMLDivElement> = useRef(null);
-  useGSAP(() => {
 
+  const { contextSafe } = useGSAP();
+
+  const resizeSlidingPage = contextSafe(() => {
     if (props.selected) {
-      gsap.to(subtitleRef.current, { fontSize: '100px' });
-      gsap.to(imageConRef.current, { width: '600px' });
+      gsap.to(subtitleRef.current, { fontSize: currentSizes.subTile.fontSize, paddingTop: "0px" });
+      gsap.to(imageConRef.current, { width: currentSizes.image.width });
     } else {
-      gsap.to(subtitleRef.current, { fontSize: '15px' });
+      gsap.to(subtitleRef.current, { fontSize: '15px', paddingTop: "55px" });
       gsap.to(imageConRef.current, { width: '15px' });
     }
+  });
+
+  useGSAP(() => {
+    resizeSlidingPage()
   }, [props.selected]);
 
+
+
+  useEffect(() => {
+
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setCurrentSizes(responsiveSizes.mobile);
+      } else if (window.innerWidth < 1024) {
+        setCurrentSizes(responsiveSizes.medium);
+
+      } else if (window.innerWidth < 1280) {
+        setCurrentSizes(responsiveSizes.large);
+      } else {
+        setCurrentSizes(responsiveSizes.large);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <div className="flex flex-col justify-between h-dvh">
+
+    <div className="flex flex-col justify-start h-dvh">
       <div className="">
         <div className=" pl-4 text-sm pt-4 ">
           {props.optionalName}
@@ -48,7 +96,7 @@ const SlidingPage = (props: SlidingPage) => {
 
         <div className="justify-start pl-16 pt-6">
 
-          <div ref={imageConRef} className="shadow-lg w-[1000px] h-[500px] overflow-hidden relative">
+          <div ref={imageConRef} className="shadow-lg w-[600px] h-[500px] overflow-hidden relative">
             <Image
               src={props.mainImage}
               layout='fill'
@@ -65,16 +113,13 @@ const SlidingPage = (props: SlidingPage) => {
 
       <div className="flex justify-between pl-4 ">
 
-        <div className="w-[60%] align-text-top  text-[15px] pb-10 " ref={subtitleRef}>
+        <div className="w-[60%] text-[15px] " ref={subtitleRef}>
           {props.pageSubtitle}
         </div>
 
         {props.selected &&
-          <div className="grid grid-rows-3 grid-flow-col gap-3 w-[30%] pr-7 ">
-
-            <div className='row-span-1' />
-
-            <div className=' row-span-2'>
+          <div className=" w-[30%] pr-7 pt-12">
+            <div className=' row-span-2 '>
               {/* line of full width */}
               <div className="border border-zinc-900 " />
 
@@ -154,7 +199,7 @@ export default function HomePage() {
           optionalName=". "
           mainImage="/rooms/room_1.jpg"
           pageSubtitle="Projects"
-          linkTitle="See my projects"
+          linkTitle="Check out my projects"
           selected={isSelected(projectsRef)}
         />
       </div>
@@ -166,7 +211,7 @@ export default function HomePage() {
           optionalName=". "
           mainImage="/rooms/room_1.jpg"
           pageSubtitle="Socials"
-          linkTitle="See my socials"
+          linkTitle="Check out my socials"
           selected={isSelected(socialsRef)}
         />
       </div>
