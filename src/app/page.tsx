@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef, useState, useEffect } from "react";
 import React from 'react'
+import { Large, Medium, ResponsiveSizes, Small, Xsmall } from '~/model/responsiveSizes';
 
 interface SlidingPage {
   pageNumber: string;
@@ -18,57 +19,82 @@ interface SlidingPage {
 
 const SlidingPage = (props: SlidingPage) => {
 
-  const responsiveSizes = {
-    mobile: {
-      image: { width: "150px", height: "200px" },
+
+  const responsiveSizes: ResponsiveSizes = {
+    xsmall: {
+      id: "xsmall",
+      image: { width: "100px", height: "100px" },
+      subTile: { fontSize: "30px" },
+      linkText: { fontSize: "10px" },
+    },
+    small: {
+      id: "small",
+      image: { width: "150px", height: "500px" },
       subTile: { fontSize: "50px" },
+      linkText: { fontSize: "17px" },
     },
     medium: {
+      id: "medium",
       image: { width: "500px", height: "500px" },
       subTile: { fontSize: "60px" },
+      linkText: { fontSize: "17px" },
     },
     large: {
+      id: "large",
       image: { width: "700px", height: "500px" },
       subTile: { fontSize: "100px" },
+      linkText: { fontSize: "17px" },
     }
   }
-
-  const [currentSizes, setCurrentSizes] = useState(responsiveSizes.medium);
 
 
   const subtitleRef: React.RefObject<HTMLDivElement> = useRef(null);
   const imageConRef: React.RefObject<HTMLDivElement> = useRef(null);
-
+  const linkConf: React.RefObject<HTMLDivElement> = useRef(null);
+  const [currentSizes, setCurrentSizes] = useState(responsiveSizes.medium);
+  const [isMobile, setIsMobile] = useState(false);
   const { contextSafe } = useGSAP();
 
   const resizeSlidingPage = contextSafe(() => {
     if (props.selected) {
       gsap.to(subtitleRef.current, { fontSize: currentSizes.subTile.fontSize, paddingTop: "0px" });
       gsap.to(imageConRef.current, { width: currentSizes.image.width });
+      gsap.to(linkConf.current, { fontSize: currentSizes.linkText.fontSize });
     } else {
       gsap.to(subtitleRef.current, { fontSize: '15px', paddingTop: "55px" });
       gsap.to(imageConRef.current, { width: '15px' });
+      gsap.to(linkConf.current, { fontSize: "17px" });
     }
   });
 
   useGSAP(() => {
     resizeSlidingPage()
-  }, [props.selected]);
+  }, { dependencies: [props.selected] });
 
+  useEffect(() => {
+    resizeSlidingPage();
+  }, [currentSizes]);
 
 
   useEffect(() => {
 
     const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setCurrentSizes(responsiveSizes.mobile);
+
+      if (window.innerWidth < 500) {
+        setCurrentSizes(responsiveSizes.xsmall);
+        setIsMobile(true);
+      } else if (window.innerWidth < 768) {
+        setCurrentSizes(responsiveSizes.small);
+        setIsMobile(true);
       } else if (window.innerWidth < 1024) {
         setCurrentSizes(responsiveSizes.medium);
-
+        setIsMobile(false);
       } else if (window.innerWidth < 1280) {
         setCurrentSizes(responsiveSizes.large);
+        setIsMobile(false);
       } else {
         setCurrentSizes(responsiveSizes.large);
+        setIsMobile(false);
       }
     };
 
@@ -76,6 +102,7 @@ const SlidingPage = (props: SlidingPage) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
 
   return (
 
@@ -126,14 +153,15 @@ const SlidingPage = (props: SlidingPage) => {
               {/* subtitle */}
               <div className="flex justify-between pt-2 row-span-5 ">
 
-                <div className=" text-m ">
+                <div ref={linkConf} className=" text-[17px] ">
                   {props.linkTitle}
                 </div>
 
-                <div className="">
-                  {"-->"}
-                </div>
-
+                {!isMobile &&
+                  <div className="">
+                    {"-->"}
+                  </div>
+                }
               </div>
 
             </div>
@@ -161,6 +189,7 @@ export default function HomePage() {
   const slidingPageOnClick = contextSafe((ref: React.RefObject<HTMLDivElement>) => {
     setSelectedPage(ref)
     for (const page of pages) {
+
       if (page == ref) {
         gsap.to(page.current, { width: '100%' })
       } else {
@@ -182,7 +211,7 @@ export default function HomePage() {
   return (
     <main className='flex flex-row w-[100%] overflow-hidden'>
 
-      <div ref={aboutRef} onClick={() => slidingPageOnClick(aboutRef)} className="w-[80%] bg-red-400 pt-1 text-zinc-900 font-medium font-scopeone z-0 h-dvh">
+      <div ref={aboutRef} onClick={() => slidingPageOnClick(aboutRef)} className="w-[100%] bg-red-400 pt-1 text-zinc-900 font-medium font-scopeone z-0 h-dvh">
         <SlidingPage
           optionalName="Muneeb Haq"
           pageNumber="01"
@@ -193,25 +222,25 @@ export default function HomePage() {
         />
       </div>
 
-      <div ref={projectsRef} onClick={() => slidingPageOnClick(projectsRef)} className="w-[150px] bg-yellow-500 pt-1 text-zinc-900 font-medium font-scopeone z-0 h-dvh">
+      <div ref={projectsRef} onClick={() => slidingPageOnClick(projectsRef)} className="w-[180px] bg-yellow-500 pt-1 text-zinc-900 font-medium font-scopeone z-0 h-dvh">
         <SlidingPage
           pageNumber="02"
           optionalName=". "
           mainImage="/rooms/room_1.jpg"
           pageSubtitle="Projects"
-          linkTitle="Check out my projects"
+          linkTitle="See my projects"
           selected={isSelected(projectsRef)}
         />
       </div>
 
 
-      <div ref={socialsRef} onClick={() => slidingPageOnClick(socialsRef)} className="w-[150px] bg-blue-500 pt-1 text-zinc-900 font-medium font-scopeone z-0 h-dvh">
+      <div ref={socialsRef} onClick={() => slidingPageOnClick(socialsRef)} className="w-[180px] bg-blue-500 pt-1 text-zinc-900 font-medium font-scopeone z-0 h-dvh">
         <SlidingPage
           pageNumber="03"
           optionalName=". "
           mainImage="/rooms/room_1.jpg"
           pageSubtitle="Socials"
-          linkTitle="Check out my socials"
+          linkTitle="See my socials"
           selected={isSelected(socialsRef)}
         />
       </div>
