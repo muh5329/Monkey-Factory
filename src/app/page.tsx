@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { useRef, useState, useEffect } from "react";
 import React from 'react'
 import { Large, Medium, ResponsiveSizes, Small, Xsmall } from '~/model/responsiveSizes';
+import { useRouter } from 'next/navigation'
 
 interface SlidingPage {
   pageNumber: string;
@@ -14,6 +15,7 @@ interface SlidingPage {
   pageSubtitle: string;
   linkTitle: string;
   selected: boolean | null;
+  route: string;
 }
 
 
@@ -103,6 +105,7 @@ const SlidingPage = (props: SlidingPage) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const router = useRouter();
 
   return (
 
@@ -145,7 +148,7 @@ const SlidingPage = (props: SlidingPage) => {
         </div>
 
         {props.selected &&
-          <div className=" w-[30%] pr-7 pt-12">
+          <div onClick={() => router.push(props.route)} className=" w-[30%] pr-7 pt-12">
             <div className=' row-span-2 '>
               {/* line of full width */}
               <div className="border border-zinc-900 " />
@@ -219,6 +222,7 @@ export default function HomePage() {
           pageSubtitle="About Me"
           linkTitle="More About Me"
           selected={isSelectedDefaultRender(aboutRef)}
+          route='/aboutme'
         />
       </div>
 
@@ -230,6 +234,7 @@ export default function HomePage() {
           pageSubtitle="Projects"
           linkTitle="See my projects"
           selected={isSelected(projectsRef)}
+          route='/projects'
         />
       </div>
 
@@ -242,6 +247,7 @@ export default function HomePage() {
           pageSubtitle="Socials"
           linkTitle="See my socials"
           selected={isSelected(socialsRef)}
+          route='/socials'
         />
       </div>
 

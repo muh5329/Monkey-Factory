@@ -1,42 +1,25 @@
 "use client"
 
 import * as React from "react"
-import { MoreHorizontal } from "lucide-react"
-
+import { useRouter } from 'next/navigation'
 import { Button } from "~/components/ui/button"
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "~/components/ui/command"
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu"
 
-const labels = [
-  "feature",
-  "bug",
-  "enhancement",
-  "documentation",
-  "design",
-  "question",
-  "maintenance",
-]
+/*
+ * 
+ * Shadrcn Drop Down Menu
+ * */
 
 export function ComboboxDropdownMenu() {
   const [open, setOpen] = React.useState(false)
-
+  const router = useRouter()
   return (
     <div className="flex w-full flex-col items-start justify-between  px-4 py-3 sm:flex-row sm:items-center">
       <p className="text-sm font-medium leading-none">
@@ -51,16 +34,16 @@ export function ComboboxDropdownMenu() {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-[200px]">
           <DropdownMenuGroup>
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => router.push('/')} >
               [home]
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => router.push('/aboutme')} >
               [about me]
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => router.push('/projects')} >
               [projects]
             </DropdownMenuItem>
-            <DropdownMenuItem className="text-green-600">
+            <DropdownMenuItem className="text-green-600" onClick={() => router.push('/socials')} >
               [socials]
             </DropdownMenuItem>
           </DropdownMenuGroup>
