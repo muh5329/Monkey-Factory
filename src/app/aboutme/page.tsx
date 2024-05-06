@@ -16,15 +16,30 @@ export default function AboutMePage
         </div>
 
         <div className='row-span-3 col-span-2  text-black'>
-          Hello! My name is Muneeb Haq and i have been programming proffessionally since August 2015.
-          Programming has been a passion for me long before that, and it all started with a love for video games.
-          Ever since i picked up my first video game to trying to create mods for Warcraft III , i have been obsessed
-          in trying to make my own games and experiences.
+          Hey there!  My name is Muneeb Haq and i have been programming professionally since August of 2015. I got my start into
+          the world of computer science begining from a very young age. It started with
+          me tinkering around with Warcraft III Custom maps and turned into  an effort
+          in me learning how to make my own video games. This led me to computer science
+          and has been a deeply gratifying journey ever since.
 
 
-          <div className='pt-10'>
-            This led me into a life long love and passion in Computer Science.
+          <div className='pt-5'>
+            While my origins started in a desire to get into game development, my true
+            passion to create and learn has allowed me to experiene many different facets of this field.
+            I started my career as a UI developer making health care websites used by millions, i have
+            gone through and transitioned into a variety of different roles ranging from middleware
+            service development, devops infrastructuring, or even big data real time data analtics and
+            proccessing.
           </div>
+
+          <div className='pt-5'>
+            I still hold that original flame deep in my heart for game development and 3D graphics
+            programming, albiet not in a professional capacity. Many of my side projects and passions
+            still revolve on creating games and 3D experiences in WebGL for example. I do try not
+            to limit my self to just 3D apps, and try to always explore new langauges and paradigms.
+
+          </div>
+
         </div>
 
       </div>
