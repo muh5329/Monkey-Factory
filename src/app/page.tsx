@@ -116,7 +116,7 @@ const SlidingPage = (props: SlidingPage) => {
         </div>
       </div>
 
-      <div className="flex pt-1 h-[75%]">
+      <div className="flex pt-1 ">
 
         {props.selected &&
           <div className="w-10 pt-4 pl-4  text-lg">
