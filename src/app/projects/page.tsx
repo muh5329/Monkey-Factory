@@ -47,8 +47,8 @@ export default function ProjectsPage
 
   const tags = ["All", "threejs/Webgl", "design", "web"];
   return (
-    <main className=" h-dvh bg-yellow-500">
-      <div className='flex items-center justify-center  gap-4 p-10'>
+    <main className=" h-fill bg-yellow-500">
+      <div className='flex items-center justify-center gap-4 p-10'>
         {tags.map((tag, i) =>
           <div key={i} className='bg-gray-50 rounded-lg pt-1 pb-1 pl-2 pr-2 h-fit text-center '>
             {tag}
@@ -56,11 +56,27 @@ export default function ProjectsPage
         )}
 
       </div>
-      <div className='grid grid-cols-4 justify-items-center gap-7 p-10'>
+      <div className='grid grid-cols-4 justify-items-center  p-10'>
         {projects.map((project, i) =>
           <div key={i}
-            className='rounded-lg col-span-1 row-span-1 bg-gray-50 w-[300px] h-[250px]'>
-            {project.name}
+            className='rounded-lg flex flex-col  col-span-1 row-span-1 m-5 bg-gray-50 w-[300px] h-[250px] justify-between'>
+            <div>
+              {project.name}
+            </div>
+
+
+            <div className='grid grid-flow-col col-span-6 '>
+
+              <div className=' bg-red-600 col-span-5' >
+                {project.name}
+              </div>
+
+              <div className=' bg-purple-300 col-span-1' >
+                GH Link
+              </div>
+
+            </div>
+
           </div>
         )}
       </div>
