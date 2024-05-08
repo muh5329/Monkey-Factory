@@ -230,7 +230,7 @@ export default function HomePage() {
         <SlidingPage
           pageNumber="02"
           optionalName=". "
-          mainImage="/rooms/room_1.jpg"
+          mainImage="/rooms/room_2.jpg"
           pageSubtitle="Projects"
           linkTitle="See my projects"
           selected={isSelected(projectsRef)}
@@ -243,7 +243,7 @@ export default function HomePage() {
         <SlidingPage
           pageNumber="03"
           optionalName=". "
-          mainImage="/rooms/room_1.jpg"
+          mainImage="/rooms/room_3.jpg"
           pageSubtitle="Socials"
           linkTitle="See my socials"
           selected={isSelected(socialsRef)}
