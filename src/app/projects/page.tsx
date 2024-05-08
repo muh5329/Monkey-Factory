@@ -56,22 +56,22 @@ export default function ProjectsPage
         )}
 
       </div>
-      <div className='grid grid-cols-4 justify-items-center  p-10'>
+      <div className='grid grid-cols-4 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4  min-[320px]:grid-cols-1 justify-items-center  p-10'>
         {projects.map((project, i) =>
           <div key={i}
-            className='rounded-lg flex flex-col  col-span-1 row-span-1 m-5 bg-gray-50 w-[300px] h-[250px] justify-between'>
+            className='rounded-lg flex flex-col  col-span-1 row-span-1 m-5 bg-gray-50 w-[250px] h-[200px] justify-between'>
             <div>
               {project.name}
             </div>
 
 
-            <div className='grid grid-flow-col col-span-6 '>
+            <div className='relative '>
 
-              <div className=' bg-red-600 col-span-5' >
+              <div className=' text-slate-50 font-bold pl-3 bg-red-600 rounded-lg z-30 absolute bottom-0 left-0 w-[90%]' >
                 {project.name}
               </div>
 
-              <div className=' bg-purple-300 col-span-1' >
+              <div className=' bg-purple-300 col-span-1 z-40 absolute bottom-0 right-0 rounded-lg' >
                 GH Link
               </div>
 
