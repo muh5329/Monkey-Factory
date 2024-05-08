@@ -16,33 +16,44 @@ export default function SocialsPage
         </div>
 
         <div className='text-white font-bold text-center '>
-          @MuneebHaq12123
+          @Muneeb22125325
         </div>
 
-        <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
-          Twitter
-        </div>
+        <a href="https://twitter.com/Muneeb22125325">
+          <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
+            Twitter
+          </div>
+        </a>
 
-        <div className=' pt-2 pb-2 pl-16 pr-16 border-2 text-white font-bold border-white-500 text-center '>
-          LinkedIn
-        </div>
+        <a href="https://www.linkedin.com/in/muneeb-haq-87b96098/">
+          <div className=' pt-2 pb-2 pl-16 pr-16 border-2 text-white font-bold border-white-500 text-center '>
+            LinkedIn
+          </div>
+        </a>
 
-        <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
-          GitHub
-        </div>
+        <a href="https://github.com/muh5329">
+          <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
+            GitHub
+          </div>
+        </a>
 
-        <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
-          Instagram
-        </div>
+        <a href="https://github.com/muh5329">
+          <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
+            Instagram
+          </div>
+        </a>
 
-        <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
-          Email
-        </div>
+        <a href="mailto:muh5329@gmail.com">
+          <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
+            Email
+          </div>
+        </a>
 
-        <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
-          Website
-        </div>
-
+        <a href="https://www.monkeyfactory.org/">
+          <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
+            Website
+          </div>
+        </a>
 
       </div>
 
