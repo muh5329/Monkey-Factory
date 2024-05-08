@@ -3,7 +3,7 @@ import Image from 'next/image'
 export default function AboutMePage
   () {
   return (
-    <main className="flex flex-col justify-start h-dvh bg-red-400">
+    <main className="flex flex-col justify-start min-h-screen bg-red-400">
       <div className='grid grid-rows-3 grid-flow-col gap-4 justify-start pt-20 pl-5 '>
 
         <div className='rounded-lg w-[200px] h-[200px] shadow-2xl overflow-hidden relative'>
