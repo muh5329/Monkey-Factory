@@ -8,38 +8,38 @@ export default function ProjectsPage
       "name": "project1",
       "image": "/websites/mics.jpg",
       "link": "",
-      "repo": "",
+      "repo": "https://github.com/muh5329",
       "tags": []
     },
     {
       "name": "project1",
       "image": "/websites/mics.jpg",
       "link": "",
-      "repo": "",
+      "repo": "https://github.com/muh5329",
       "tags": []
     }, {
       "name": "project1",
       "image": "/websites/mics.jpg",
       "link": "",
-      "repo": "",
+      "repo": "https://github.com/muh5329",
       "tags": []
     }, {
       "name": "project1",
       "image": "/websites/mics.jpg",
       "link": "",
-      "repo": "",
+      "repo": "https://github.com/muh5329",
       "tags": []
     }, {
       "name": "project1",
       "image": "/websites/mics.jpg",
       "link": "",
-      "repo": "",
+      "repo": "https://github.com/muh5329",
       "tags": []
     }, {
       "name": "project1",
       "image": "/websites/mics.jpg",
       "link": "",
-      "repo": "",
+      "repo": "https://github.com/muh5329",
       "tags": []
     },
 
@@ -79,7 +79,7 @@ export default function ProjectsPage
                 {project.name}
               </div>
 
-              <a href={project.repo}>
+              <a target="_blank" rel="noopener noreferrer" href={project.repo}>
                 <div className=' bg-gradient-to-r from-purple-500 to-pink-500 col-span-1 z-40 absolute bottom-0 right-0 rounded-lg' >
                   <Image
                     src="/icons/github-mark.png"

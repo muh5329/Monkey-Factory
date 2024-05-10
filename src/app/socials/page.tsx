@@ -19,37 +19,37 @@ export default function SocialsPage
           @Muneeb22125325
         </div>
 
-        <a href="https://twitter.com/Muneeb22125325">
+        <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/Muneeb22125325">
           <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
             Twitter
           </div>
         </a>
 
-        <a href="https://www.linkedin.com/in/muneeb-haq-87b96098/">
+        <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/muneeb-haq-87b96098/">
           <div className=' pt-2 pb-2 pl-16 pr-16 border-2 text-white font-bold border-white-500 text-center '>
             LinkedIn
           </div>
         </a>
 
-        <a href="https://github.com/muh5329">
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/muh5329">
           <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
             GitHub
           </div>
         </a>
 
-        <a href="https://github.com/muh5329">
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/muh5329">
           <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
             Instagram
           </div>
         </a>
 
-        <a href="mailto:muh5329@gmail.com">
+        <a target="_blank" rel="noopener noreferrer" href="mailto:muh5329@gmail.com">
           <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
             Email
           </div>
         </a>
 
-        <a href="https://www.monkeyfactory.org/">
+        <a target="_blank" rel="noopener noreferrer" href="https://www.monkeyfactory.org/">
           <div className=' pt-2 pb-2 pl-16 pr-16 border-2 border-white-500 text-white font-bold text-center '>
             Website
           </div>
