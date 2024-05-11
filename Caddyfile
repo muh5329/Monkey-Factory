@@ -1,0 +1,3 @@
+monkeyfactory.org {
+    reverse_proxy nextjs-docker:3001
+}
