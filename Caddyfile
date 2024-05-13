@@ -1,3 +1,7 @@
 monkeyfactory.org {
-    reverse_proxy nextjs-docker:3001
+  reverse_proxy server:3000
+}
+
+analytics.monkeyfactory.org {
+  reverse_proxy plausible:8000
 }
