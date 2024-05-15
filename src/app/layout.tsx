@@ -1,6 +1,11 @@
 import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 import { ComboboxDropdownMenu } from "~/components/ui/menu";
+import * as Swetrix from 'swetrix'
+
+Swetrix.init('monkey-factory')
+Swetrix.trackViews()
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",

@@ -125,7 +125,6 @@ const SlidingPage = (props: SlidingPage) => {
         }
 
         <div className="justify-start pl-16 pt-6">
-
           <div ref={imageConRef} className="shadow-lg w-[600px] h-[500px] overflow-hidden relative">
             <Image
               src={props.mainImage}
@@ -134,8 +133,6 @@ const SlidingPage = (props: SlidingPage) => {
               objectFit='cover'
             />
           </div>
-
-
         </div>
 
       </div>
@@ -152,25 +149,19 @@ const SlidingPage = (props: SlidingPage) => {
             <div className=' row-span-2 '>
               {/* line of full width */}
               <div className="border border-zinc-900 " />
-
               {/* subtitle */}
               <div className="flex justify-between pt-2 row-span-5 ">
-
                 <div ref={linkConf} className=" text-[17px] ">
                   {props.linkTitle}
                 </div>
-
                 {!isMobile &&
                   <div className="">
                     {"-->"}
                   </div>
                 }
               </div>
-
             </div>
-
           </div>
-
         }
 
       </div>
