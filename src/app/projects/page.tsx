@@ -9,7 +9,7 @@ export default function ProjectsPage
       "image": "/websites/mics.jpg",
       "link": "",
       "repo": "https://github.com/muh5329",
-      "tags": []
+      "tags": ["webgl"]
     },
     {
       "name": "project1",
@@ -45,7 +45,7 @@ export default function ProjectsPage
 
   ];
 
-  const tags = ["All", "threejs/Webgl", "design", "web"];
+  const tags = ["All", "threejs/Webgl", "design", "web", "tag"];
 
   return (
     <main className=" min-h-screen bg-yellow-500">
