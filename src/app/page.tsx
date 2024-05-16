@@ -7,7 +7,7 @@ import { useRef, useState, useEffect } from "react";
 import React from 'react'
 import { Large, Medium, ResponsiveSizes, Small, Xsmall } from '~/model/responsiveSizes';
 import { useRouter } from 'next/navigation'
-
+import * as Swetrix from 'swetrix'
 interface SlidingPage {
   pageNumber: string;
   optionalName?: string;
@@ -170,6 +170,12 @@ const SlidingPage = (props: SlidingPage) => {
 }
 
 export default function HomePage() {
+  useEffect(() => {
+    Swetrix.init('monkey-factory');
+    void Swetrix.trackViews();
+  }, []); 
+
+ 
   const aboutRef: React.RefObject<HTMLDivElement> = useRef(null);
   const projectsRef: React.RefObject<HTMLDivElement> = useRef(null);
   const socialsRef: React.RefObject<HTMLDivElement> = useRef(null);
