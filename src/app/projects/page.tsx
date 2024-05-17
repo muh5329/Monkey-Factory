@@ -96,9 +96,25 @@ export default function ProjectsPage() {
     setProjectList(filterBySelectedTags(projects, updatedItems));
   }
 
+
+
   return (
     <main className=" min-h-screen bg-yellow-500">
       <div className='flex items-center justify-center gap-4 p-10'>
+
+        {selectedTags.length > 0 &&
+          <div className="bg-slate-200  rounded-lg pt-1 pb-1 pl-2 pr-2 h-fit text-center">
+            All
+          </div>
+        }
+
+        {selectedTags.length <= 0 &&
+          <div className="bg-slate-500  rounded-lg pt-1 pb-1 pl-2 pr-2 h-fit text-center" onClick={() => unselectTag(tag)}>
+            All
+          </div>
+        }
+
+
         {selectedTags.map((tag, i) =>
           <div key={i} className="bg-slate-500  rounded-lg pt-1 pb-1 pl-2 pr-2 h-fit text-center" onClick={() => unselectTag(tag)}>
             {tag}
