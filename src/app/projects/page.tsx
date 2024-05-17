@@ -109,7 +109,7 @@ export default function ProjectsPage() {
         }
 
         {selectedTags.length <= 0 &&
-          <div className="bg-slate-500  rounded-lg pt-1 pb-1 pl-2 pr-2 h-fit text-center" onClick={() => unselectTag(tag)}>
+          <div className="bg-slate-500  rounded-lg pt-1 pb-1 pl-2 pr-2 h-fit text-center" >
             All
           </div>
         }
