@@ -36,7 +36,7 @@
       ]
     },
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
   },
   "include": [
     ".eslintrc.cjs",
