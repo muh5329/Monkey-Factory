@@ -3,7 +3,7 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 import { ComboboxDropdownMenu } from "~/components/ui/menu";
 import { useEffect } from "react";
-
+import { TRPCReactProvider } from "~/trpc/react";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -35,7 +35,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-sans ${inter.variable} flex flex-col gap-4 `}>
         <TopNav />
-        {children}
+        <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
     </html>
   );

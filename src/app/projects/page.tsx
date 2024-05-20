@@ -1,8 +1,23 @@
 'use client'
 
 import Image from 'next/image'
-import { useMemo, useState } from 'react';
+import { useMemo, useState , useEffect} from 'react';
+
 export default function ProjectsPage() {
+
+
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/trpc');
+      const result = await response.json();
+      setData(result.data);
+    };
+
+    fetchData();
+  }, []);
+
 
   interface Project {
     name: string;
