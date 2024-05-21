@@ -17,6 +17,7 @@ interface TagProps {
   setUnselectedTags : Dispatch<SetStateAction<string[]>>
   projectList : Array<Project>
   setProjectList :  Dispatch<SetStateAction<Array<Project>>>
+  projects: Array<Project>
 }
 
 const Tags = (props :TagProps) =>{
@@ -27,19 +28,19 @@ const Tags = (props :TagProps) =>{
 
   const selectTag = (tag: string) => {
       props.setSelectedTags([...props.selectedTags, tag]);
-      const updatedItems = props.unselectedTags.filter(item => item !== tag);
-      props.setUnselectedTags(updatedItems);
-      props.setProjectList(filterBySelectedTags( props.projectList, [...props.selectedTags, tag]));
+      props.setUnselectedTags(props.unselectedTags.filter(item => item !== tag));
+      props.setProjectList(filterBySelectedTags( props.projects, [...props.selectedTags, tag]));
     }
   
   const unselectTag = (tag: string) => {
-      props.setUnselectedTags([...props.selectedTags, tag]);
-      const updatedItems = props.unselectedTags.filter(item => item !== tag);
+      props.setUnselectedTags([...props.unselectedTags, tag]);
+      const updatedItems = props.selectedTags.filter(item => item !== tag);
       props.setSelectedTags(updatedItems);
-      props.setProjectList(filterBySelectedTags( props.projectList, [...props.selectedTags, tag]));
+      props.setProjectList(filterBySelectedTags( props.projects, updatedItems));
   }
 
   const filterBySelectedTags = (projects: Array<Project>, selectedTags: string[]): Array<Project> => {
+    console.log(selectedTags.length)
   if (selectedTags.length > 0) {
       return projects.filter((item) => intersection(item.tags, selectedTags).length > 0)
   } else {
@@ -90,7 +91,7 @@ export default function Board(props:Board) {
             setUnselectedTags={setUnselectedTags}
             projectList={projectList}
             setProjectList={setProjectList}
-            
+            projects={props.projects}
           />
         </div>
 

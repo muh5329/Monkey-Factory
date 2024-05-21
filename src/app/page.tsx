@@ -19,7 +19,6 @@ interface SlidingPage {
   route: string;
 }
 
-
 const SlidingPage = (props: SlidingPage) => {
 
 
