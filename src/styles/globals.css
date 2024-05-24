@@ -74,8 +74,3 @@
       @apply bg-background text-foreground;
     }
   }
-
-  @font-face {
-    font-family: "Oswald";    
-    src: url("../../public/fonts/ScopeOne-Regular.ttf");
-  }

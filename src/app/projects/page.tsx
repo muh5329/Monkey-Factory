@@ -1,6 +1,5 @@
 'use server'
 
-import Image from 'next/image'
 import Board from './board';
 
 export interface Project {
@@ -61,14 +60,16 @@ export default  async function ProjectsPage() {
 
   const tags: Array<string> = generateTopTags(projects);
 
-  var projectList : Array<Project> = projects;
+  const projectList : Array<Project> = projects;
 
   return (
     <main className=" min-h-screen bg-yellow-500">
       <Board
         projectList={projectList}
         tags={tags} 
-        projects={projects}      />
+        projects={projects}
+    
+    />
     </main>
   );
 }

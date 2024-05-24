@@ -40,7 +40,6 @@ const Tags = (props :TagProps) =>{
   }
 
   const filterBySelectedTags = (projects: Array<Project>, selectedTags: string[]): Array<Project> => {
-    console.log(selectedTags.length)
   if (selectedTags.length > 0) {
       return projects.filter((item) => intersection(item.tags, selectedTags).length > 0)
   } else {
@@ -78,9 +77,9 @@ const Tags = (props :TagProps) =>{
 
   
 export default function Board(props:Board) {
-    var [selectedTags,setSelectedTags]  = useState<string[]>([]);
-    var [unselectedTags, setUnselectedTags] = useState<string[]>(props.tags);
-    var [projectList,setProjectList] = useState(props.projectList);
+    const [selectedTags,setSelectedTags]  = useState<string[]>([]);
+    const [unselectedTags, setUnselectedTags] = useState<string[]>(props.tags);
+    const [projectList,setProjectList] = useState(props.projectList);
 
     return (<>
         <div className='flex items-center justify-center gap-4 p-10'>

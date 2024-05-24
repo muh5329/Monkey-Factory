@@ -1,5 +1,5 @@
 "use client"
-
+/* eslint-disable @typescript-eslint/no-unsafe-assignment*/
 import * as React from "react"
 import { useRouter } from 'next/navigation'
 import { Button } from "~/components/ui/button"
