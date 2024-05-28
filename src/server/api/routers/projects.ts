@@ -5,9 +5,9 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
-import { posts } from "~/server/db/schema";
+import { projects } from "~/server/db/schema";
 
-export const postRouter = createTRPCRouter({
+export const projectRouter = createTRPCRouter({
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
     .query(({ input }) => {
@@ -15,6 +15,11 @@ export const postRouter = createTRPCRouter({
         greeting: `Hello ${input.text}`,
       };
     }),
+  getAllProjects: publicProcedure.query(({ ctx }) => {
+    return ctx.db.query.projects.findMany({
+      orderBy: (projects, { desc }) => [desc(projects.createdAt)],
+    });
+  }),
 
   create: protectedProcedure
     .input(z.object({ name: z.string().min(1) }))
@@ -22,15 +27,15 @@ export const postRouter = createTRPCRouter({
       // simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      await ctx.db.insert(posts).values({
+      await ctx.db.insert(projects).values({
         name: input.name,
         createdById: ctx.session.user.id,
       });
     }),
 
   getLatest: publicProcedure.query(({ ctx }) => {
-    return ctx.db.query.posts.findFirst({
-      orderBy: (posts, { desc }) => [desc(posts.createdAt)],
+    return ctx.db.query.projects.findFirst({
+      orderBy: (projects, { desc }) => [desc(projects.createdAt)],
     });
   }),
 

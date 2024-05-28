@@ -14,13 +14,20 @@ import { type AdapterAccount } from "next-auth/adapters";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = sqliteTableCreator((name) => `sample_${name}`);
+export const createTable = sqliteTableCreator((name) => `${name}`);
 
-export const posts = createTable(
-  "post",
+export const projects = createTable(
+  "projects",
   {
     id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     name: text("name", { length: 256 }),
+    image: text("image", { length: 256 }),
+    link: text("link", { length: 256 }),
+    repo: text("repo", { length: 256 }),
+    tags: text('tags', { mode: 'json' })
+      .notNull()
+      .$type<string[]>()
+      .default(sql`(json_array())`),
     createdById: text("createdById", { length: 255 })
       .notNull()
       .references(() => users.id),

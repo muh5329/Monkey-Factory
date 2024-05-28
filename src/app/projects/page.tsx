@@ -1,75 +1,51 @@
 'use server'
 
+import { Suspense } from 'react';
 import Board from './board';
+import { api } from "~/trpc/server";
 
 export interface Project {
-  name: string;
-  image: string;
-  link: string;
-  repo: string;
-  tags: string[];
+    id?: number;
+    name: string | null;
+    image: string | null;
+    link: string | null;
+    repo: string | null;
+    tags: string[];
+    createdById?: string | null;
+    createdAt?: Date | null;
+    updatedAt?: Date | null;
 }
+
+
+
 export default  async function ProjectsPage() {
+
+  function Loading() {
+    return <h2>🌀 Loading...</h2>;
+  }
 
   const generateTopTags = (projects: Array<Project>): Array<string> => {
     return [... new Set(projects.flatMap((m) => m.tags))];
   }
 
-  const projects: Array<Project> = [
-    {
-      "name": "project1",
-      "image": "/websites/mics.jpg",
-      "link": "",
-      "repo": "https://github.com/muh5329",
-      "tags": ["webgl"]
-    },
-    {
-      "name": "project1",
-      "image": "/websites/mics.jpg",
-      "link": "",
-      "repo": "https://github.com/muh5329",
-      "tags": ["test"]
-    }, {
-      "name": "project1",
-      "image": "/websites/mics.jpg",
-      "link": "",
-      "repo": "https://github.com/muh5329",
-      "tags": ["math"]
-    }, {
-      "name": "project1",
-      "image": "/websites/mics.jpg",
-      "link": "",
-      "repo": "https://github.com/muh5329",
-      "tags": ["webgl", "design"]
-    }, {
-      "name": "project1",
-      "image": "/websites/mics.jpg",
-      "link": "",
-      "repo": "https://github.com/muh5329",
-      "tags": ["random", "c"]
-    }, {
-      "name": "project1",
-      "image": "/websites/mics.jpg",
-      "link": "",
-      "repo": "https://github.com/muh5329",
-      "tags": []
-    },
-  ];
 
+  const projectsDb : Array<Project> = await api.projects.getAllProjects();
 
+  const tags: Array<string> = generateTopTags(projectsDb);
 
-  const tags: Array<string> = generateTopTags(projects);
-
-  const projectList : Array<Project> = projects;
+  const projectList : Array<Project> = projectsDb;
 
   return (
     <main className=" min-h-screen bg-yellow-500">
-      <Board
-        projectList={projectList}
-        tags={tags} 
-        projects={projects}
-    
-    />
+      <Suspense fallback={<Loading />}>
+        <Board
+          projectList={projectList}
+          tags={tags} 
+          projects={projectsDb}
+        
+        />
+      </Suspense>
+      
     </main>
   );
 }

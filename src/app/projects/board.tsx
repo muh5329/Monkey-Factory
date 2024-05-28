@@ -100,14 +100,16 @@ export default function Board(props:Board) {
             <div key={i}
               className='rounded-lg flex flex-col  col-span-1 row-span-1 m-5 bg-gradient-to-r from-cyan-500 to-blue-500 w-[250px] h-[200px] '>
 
-              <div className='rounded-full w-[250px] h-[200px] shadow-2xl overflow-hidden relative inset-0  '>
-                <Image
-                  src={project.image}
-                  layout='fill'
-                  objectFit='cover'
-                  alt="Picture of the author"
-                />
-              </div>
+              <a target="_blank" rel="noopener noreferrer" href={project.link == null ? "" : project.link}>
+                <div className='rounded-full w-[250px] h-[200px] shadow-2xl overflow-hidden relative inset-0  '>
+                  <Image
+                    src={project.image == null ? "": project.image}
+                    layout='fill'
+                    objectFit='cover'
+                    alt="Picture of the website or project"
+                  />
+                </div>
+              </a>
 
 
 
@@ -117,7 +119,7 @@ export default function Board(props:Board) {
                   {project.name}
                 </div>
 
-                <a target="_blank" rel="noopener noreferrer" href={project.repo}>
+                <a target="_blank" rel="noopener noreferrer" href={project.repo == null ? "" : project.repo}>
                   <div className=' bg-gradient-to-r from-purple-500 to-pink-500 col-span-1 z-40 absolute bottom-0 right-0 rounded-lg' >
                     <Image
                       src="/icons/github-mark.png"
