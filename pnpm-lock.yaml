@@ -59,6 +59,9 @@ dependencies:
   install:
     specifier: ^0.13.0
     version: 0.13.0
+  libsql:
+    specifier: ^0.3.9
+    version: 0.3.18
   lucide-react:
     specifier: ^0.379.0
     version: 0.379.0(react@18.2.0)

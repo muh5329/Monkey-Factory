@@ -41,7 +41,8 @@
     "swetrix": "^3.1.1",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.23.3"
+    "zod": "^3.23.3",
+    "libsql": "^0.3.9"
   },
   "devDependencies": {
     "@types/eslint": "^8.56.2",
