@@ -59,6 +59,9 @@
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.4.2"
+  },  
+  "overrides": {
+    "@libsql/linux-x64-musl@npm:0.3.15": "0.2.0"
   },
   "ct3aMetadata": {
     "initVersion": "7.33.1"
