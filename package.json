@@ -14,7 +14,6 @@
   "dependencies": {
     "@auth/drizzle-adapter": "^0.7.0",
     "@gsap/react": "^2.1.1",
-    "@libsql/client": "0.4.3",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-popover": "^1.0.7",
@@ -39,6 +38,7 @@
     "server-only": "^0.0.1",
     "superjson": "^2.2.1",
     "swetrix": "^3.1.1",
+    "postgres": "^3.4.4",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.3"
@@ -59,10 +59,7 @@
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.4.2"
-  },  
-  "overrides": {
-    "@libsql/linux-x64-musl@npm:0.3.15": "0.2.0"
-  },
+  }, 
   "ct3aMetadata": {
     "initVersion": "7.33.1"
   },
