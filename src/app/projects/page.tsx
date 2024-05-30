@@ -27,7 +27,7 @@ export default  async function ProjectsPage() {
   const generateTopTags = (projects: Array<Project>): Array<string> => {
     return [... new Set(projects.flatMap((m) => m.tags))];
   }
-  var  projectsDb : Array<Project> = []
+  let  projectsDb : Array<Project> = []
   try{ 
     projectsDb = await api.projects.getAllProjects();
   } catch (e){
