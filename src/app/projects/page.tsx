@@ -21,15 +21,19 @@ export interface Project {
 export default  async function ProjectsPage() {
 
   function Loading() {
-    return <h2>🌀 Loading...</h2>;
+    return <h2> Loading...</h2>;
   }
 
   const generateTopTags = (projects: Array<Project>): Array<string> => {
     return [... new Set(projects.flatMap((m) => m.tags))];
   }
-
-
-  const projectsDb : Array<Project> = await api.projects.getAllProjects();
+  var  projectsDb : Array<Project> = []
+  try{ 
+    projectsDb = await api.projects.getAllProjects();
+  } catch (e){
+    console.log(e)
+  }
+  
 
   const tags: Array<string> = generateTopTags(projectsDb);
 
