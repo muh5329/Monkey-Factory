@@ -59,7 +59,7 @@ const responsiveSizes: ResponsiveSizes = {
   },
   mobileCollapsed: {
     id: "collapsed",
-    image: { width: "300px", height: "15px" },
+    image: { width: "230px", height: "15px" },
     subTile: { fontSize: "15px" },
     linkText: { fontSize: "17px" },
     padding: { paddingTop: "10px" }
@@ -130,9 +130,9 @@ const SlidingPage = (props: SlidingPage) => {
 
       <div className="flex pt-1 ">
 
-        {props.selected &&
+        {(props.selected || props.isMobile)&&
           <div className="w-10 pt-4 pl-4  text-lg">
-            {"[" + props.pageNumber + "]"}
+            {props.isMobile && !props.selected? props.pageSubtitle : "[" + props.pageNumber + "]"}
           </div>
         }
 
@@ -153,7 +153,7 @@ const SlidingPage = (props: SlidingPage) => {
       <div className="flex justify-between pl-4 ">
 
         <div className="w-[60%] text-[15px] " ref={subtitleRef}>
-          {props.pageSubtitle}
+          {props.isMobile && !props.selected ?"" :props.pageSubtitle}
         </div>
 
         {props.selected &&
