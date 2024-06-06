@@ -263,7 +263,7 @@ export default function HomePage() {
           optionalName="Muneeb Haq"
           pageNumber="01"
           mainImage="/rooms/room_1.jpg"
-          pageSubtitle="About Me"
+          pageSubtitle="About"
           linkTitle="More About Me"
           selected={isSelectedDefaultRender(aboutRef)}
           route='/aboutme'
