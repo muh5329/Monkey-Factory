@@ -72,7 +72,7 @@ export default async function ProjectsPage() {
   //     "tags": []
   //   },
   // ];
-  //
+
   const tags: Array<string> = generateTopTags(projectsDb);
   const projectList: Array<Project> = projectsDb;
 

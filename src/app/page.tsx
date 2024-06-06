@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef, useState, useEffect } from "react";
 import React from 'react'
-import { Large, Medium, ResponsiveSizes, Small, Xsmall } from '~/model/responsiveSizes';
+import { ResponsiveSizes, Size } from '~/model/responsiveSizes';
 import { useRouter } from 'next/navigation'
 import * as Swetrix from 'swetrix'
 
@@ -17,56 +17,91 @@ interface SlidingPage {
   linkTitle: string;
   selected: boolean | null;
   route: string;
+  isMobile: boolean;
+  setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
+  currentSizes: Size | undefined;
+}
+const responsiveSizes: ResponsiveSizes = {
+  mobile: {
+    id: "mobile",
+    image: { width: "250px", height: "350px" },
+    subTile: { fontSize: "50px" },
+    linkText: { fontSize: "13px", },
+    padding: { paddingTop: "0px" }
+  },
+  small: {
+    id: "small",
+    image: { width: "400px", height: "350px" },
+    subTile: { fontSize: "50px" },
+    linkText: { fontSize: "17px" },
+    padding: { paddingTop: "0px" }
+  },
+  medium: {
+    id: "medium",
+    image: { width: "400px", height: "500px" },
+    subTile: { fontSize: "60px" },
+    linkText: { fontSize: "17px" },
+    padding: { paddingTop: "0px" }
+  },
+  large: {
+    id: "large",
+    image: { width: "700px", height: "500px" },
+    subTile: { fontSize: "100px" },
+    linkText: { fontSize: "17px" },
+    padding: { paddingTop: "0px" }
+  },
+  collapsed: {
+    id: "collapsed",
+    image: { width: "15px", height: "500px" },
+    subTile: { fontSize: "15px" },
+    linkText: { fontSize: "17px" },
+    padding: { paddingTop: "55px" }
+  },
+  mobileCollapsed: {
+    id: "collapsed",
+    image: { width: "300px", height: "15px" },
+    subTile: { fontSize: "15px" },
+    linkText: { fontSize: "17px" },
+    padding: { paddingTop: "10px" }
+  }
 }
 
+
+
 const SlidingPage = (props: SlidingPage) => {
-
-
-  const responsiveSizes: ResponsiveSizes = {
-    xsmall: {
-      id: "xsmall",
-      image: { width: "100px", height: "500px" },
-      subTile: { fontSize: "15px" },
-      linkText: { fontSize: "10px", },
-    },
-    small: {
-      id: "small",
-      image: { width: "150px", height: "500px" },
-      subTile: { fontSize: "50px" },
-      linkText: { fontSize: "17px" },
-    },
-    medium: {
-      id: "medium",
-      image: { width: "500px", height: "500px" },
-      subTile: { fontSize: "60px" },
-      linkText: { fontSize: "17px" },
-    },
-    large: {
-      id: "large",
-      image: { width: "700px", height: "500px" },
-      subTile: { fontSize: "100px" },
-      linkText: { fontSize: "17px" },
-    }
-  }
-
-
   const subtitleRef: React.RefObject<HTMLDivElement> = useRef(null);
   const imageConRef: React.RefObject<HTMLDivElement> = useRef(null);
   const linkConf: React.RefObject<HTMLDivElement> = useRef(null);
-  const [currentSizes, setCurrentSizes] = useState(responsiveSizes.medium);
-  const [isMobile, setIsMobile] = useState(false);
   const { contextSafe } = useGSAP();
 
   const resizeSlidingPage = contextSafe(() => {
-    if (props.selected) {
-      gsap.to(subtitleRef.current, { fontSize: currentSizes.subTile.fontSize, paddingTop: "0px" });
-      gsap.to(imageConRef.current, { width: currentSizes.image.width, height: currentSizes.image.height });
-      gsap.to(linkConf.current, { fontSize: currentSizes.linkText.fontSize });
-    } else {
-      gsap.to(subtitleRef.current, { fontSize: '15px', paddingTop: "55px" });
-      gsap.to(imageConRef.current, { width: '15px', height: '500px' });
-      gsap.to(linkConf.current, { fontSize: "17px" });
+
+    let subTileFontSize, imageWidth, paddingTop, imageHeight, linkFontSize = "";
+    if (props.selected && props.currentSizes) {
+      subTileFontSize = props.currentSizes.subTile.fontSize;
+      paddingTop = props.currentSizes.padding.paddingTop;
+      imageWidth = props.currentSizes.image.width;
+      imageHeight = props.currentSizes.image.height;
+      linkFontSize = props.currentSizes.linkText.fontSize;
+    } else if (responsiveSizes.collapsed && !props.isMobile) {
+      subTileFontSize = responsiveSizes.collapsed.subTile.fontSize;
+      paddingTop = responsiveSizes.collapsed.padding.paddingTop;
+      imageWidth = responsiveSizes.collapsed.image.width;
+      imageHeight = responsiveSizes.collapsed.image.height;
+      linkFontSize = responsiveSizes.collapsed.linkText.fontSize;
+    } else if (responsiveSizes.mobileCollapsed && props.isMobile) {
+      subTileFontSize = responsiveSizes.mobileCollapsed.subTile.fontSize;
+      paddingTop = responsiveSizes.mobileCollapsed.padding.paddingTop;
+      imageWidth = responsiveSizes.mobileCollapsed.image.width;
+      imageHeight = responsiveSizes.mobileCollapsed.image.height;
+      linkFontSize = responsiveSizes.mobileCollapsed.linkText.fontSize;
     }
+
+    gsap.to(subtitleRef.current, { fontSize: subTileFontSize, paddingTop: paddingTop });
+    gsap.to(imageConRef.current, { width: imageWidth, height: imageHeight });
+    gsap.to(linkConf.current, { fontSize: linkFontSize });
+
+
   });
 
   useGSAP(() => {
@@ -75,46 +110,23 @@ const SlidingPage = (props: SlidingPage) => {
 
   useEffect(() => {
     resizeSlidingPage();
-  }, [currentSizes]);
+  }, [props.currentSizes]);
 
 
-  useEffect(() => {
 
-    const handleResize = () => {
-
-      if (window.innerWidth < 500) {
-        setCurrentSizes(responsiveSizes.xsmall);
-        setIsMobile(true);
-      } else if (window.innerWidth < 768) {
-        setCurrentSizes(responsiveSizes.small);
-        setIsMobile(true);
-      } else if (window.innerWidth < 1024) {
-        setCurrentSizes(responsiveSizes.medium);
-        setIsMobile(false);
-      } else if (window.innerWidth < 1280) {
-        setCurrentSizes(responsiveSizes.large);
-        setIsMobile(false);
-      } else {
-        setCurrentSizes(responsiveSizes.large);
-        setIsMobile(false);
-      }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const router = useRouter();
 
   return (
 
     <div className="flex flex-col justify-start h-dvh">
-      <div className="">
-        <div className=" pl-4 text-sm pt-4 ">
-          {props.optionalName}
+      {!props.isMobile &&
+        <div className="">
+          <div className=" pl-4 text-sm pt-4 ">
+            {props.optionalName}
+          </div>
         </div>
-      </div>
+      }
 
       <div className="flex pt-1 ">
 
@@ -154,7 +166,7 @@ const SlidingPage = (props: SlidingPage) => {
                 <div ref={linkConf} className=" text-[17px] ">
                   {props.linkTitle}
                 </div>
-                {!isMobile &&
+                {!props.isMobile &&
                   <div className="">
                     {"-->"}
                   </div>
@@ -179,26 +191,60 @@ export default function HomePage() {
   const aboutRef: React.RefObject<HTMLDivElement> = useRef(null);
   const projectsRef: React.RefObject<HTMLDivElement> = useRef(null);
   const socialsRef: React.RefObject<HTMLDivElement> = useRef(null);
-
+  const [currentSizes, setCurrentSizes] = useState<Size | undefined>(responsiveSizes.medium);
   const pages = [aboutRef, projectsRef, socialsRef];
-
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const [selectedPage, setSelectedPage] = useState(aboutRef);
-
   const { contextSafe } = useGSAP();
 
-  const slidingPageOnClick = contextSafe((ref: React.RefObject<HTMLDivElement>) => {
+  const slidingPageOnClick = contextSafe((ref: React.RefObject<HTMLDivElement>, mobileView = isMobile) => {
     setSelectedPage(ref)
     for (const page of pages) {
-
-      if (page == ref) {
-        gsap.to(page.current, { width: '100%' })
+      if (mobileView) {
+        if (page == ref) {
+          gsap.to(page.current, { height: '80%', width: '100%' })
+        } else {
+          gsap.to(page.current, { height: "10%", width: '100%' })
+        }
       } else {
-        gsap.to(page.current, { width: 180 })
+        if (page == ref) {
+          gsap.to(page.current, { width: '100%', height: '100%' })
+        } else {
+          gsap.to(page.current, { width: 180, height: '100%' })
+        }
       }
     }
 
   });
+  1
+  useEffect(() => {
+    const handleResize = () => {
+      let mobileView = false
+      if (window.innerWidth < 500) {
+        setCurrentSizes(responsiveSizes.mobile);
+        mobileView = true;
+        setIsMobile(mobileView);
+      } else if (window.innerWidth < 768) {
+        setCurrentSizes(responsiveSizes.small);
+        mobileView = true;
+        setIsMobile(mobileView);
+      } else if (window.innerWidth < 1024) {
+        setCurrentSizes(responsiveSizes.medium);
+        setIsMobile(mobileView);
+      } else if (window.innerWidth < 1280) {
+        setCurrentSizes(responsiveSizes.large);
+        setIsMobile(mobileView);
+      } else {
+        setCurrentSizes(responsiveSizes.large);
+        setIsMobile(mobileView);
+      }
+      slidingPageOnClick(selectedPage, mobileView)
+    };
 
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const isSelected = (ref: React.RefObject<HTMLDivElement>) => {
     return ref.current && selectedPage.current && ref.current == selectedPage.current;
@@ -206,12 +252,13 @@ export default function HomePage() {
   const isSelectedDefaultRender = (ref: React.RefObject<HTMLDivElement>) => {
     return ref.current == selectedPage.current;
   }
-
+  const slidingPageClass = 'flex w-[100%] overflow-hidden flex-row h-dvh';
+  const slidingPageClassMobile = 'flex w-[100%] overflow-hidden flex-col h-dvh';
 
   return (
-    <main className='flex flex-row w-[100%] overflow-hidden'>
+    <main className={isMobile ? slidingPageClassMobile : slidingPageClass}>
 
-      <div ref={aboutRef} onClick={() => slidingPageOnClick(aboutRef)} className="w-[100%] bg-red-400 pt-1 text-zinc-900 font-medium font-scopeone z-0 h-dvh">
+      <div ref={aboutRef} onClick={() => slidingPageOnClick(aboutRef)} className="w-[100%] bg-red-400 pt-1 text-zinc-900 font-medium font-scopeone z-0  ">
         <SlidingPage
           optionalName="Muneeb Haq"
           pageNumber="01"
@@ -220,10 +267,12 @@ export default function HomePage() {
           linkTitle="More About Me"
           selected={isSelectedDefaultRender(aboutRef)}
           route='/aboutme'
+          setIsMobile={setIsMobile}
+          isMobile={isMobile}
+          currentSizes={currentSizes}
         />
       </div>
-
-      <div ref={projectsRef} onClick={() => slidingPageOnClick(projectsRef)} className="w-[180px] bg-yellow-500 pt-1 text-zinc-900 font-medium font-scopeone z-0 h-dvh">
+      <div ref={projectsRef} onClick={() => slidingPageOnClick(projectsRef)} className="w-[180px] bg-yellow-500 pt-1 text-zinc-900 font-medium font-scopeone z-0 ">
         <SlidingPage
           pageNumber="02"
           optionalName=". "
@@ -232,11 +281,14 @@ export default function HomePage() {
           linkTitle="See my projects"
           selected={isSelected(projectsRef)}
           route='/projects'
+          setIsMobile={setIsMobile}
+          isMobile={isMobile}
+          currentSizes={currentSizes}
         />
       </div>
 
 
-      <div ref={socialsRef} onClick={() => slidingPageOnClick(socialsRef)} className="w-[180px] bg-blue-500 pt-1 text-zinc-900 font-medium font-scopeone z-0 h-dvh">
+      <div ref={socialsRef} onClick={() => slidingPageOnClick(socialsRef)} className="w-[180px] bg-blue-500 pt-1 text-zinc-900 font-medium font-scopeone z-0">
         <SlidingPage
           pageNumber="03"
           optionalName=". "
@@ -245,10 +297,13 @@ export default function HomePage() {
           linkTitle="See my socials"
           selected={isSelected(socialsRef)}
           route='/socials'
+          setIsMobile={setIsMobile}
+          isMobile={isMobile}
+          currentSizes={currentSizes}
         />
       </div>
 
 
-    </main>
+    </main >
   );
 } 
