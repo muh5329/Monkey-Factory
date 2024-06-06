@@ -25,9 +25,9 @@ const SlidingPage = (props: SlidingPage) => {
   const responsiveSizes: ResponsiveSizes = {
     xsmall: {
       id: "xsmall",
-      image: { width: "100px", height: "100px" },
-      subTile: { fontSize: "30px" },
-      linkText: { fontSize: "10px" },
+      image: { width: "100px", height: "500px" },
+      subTile: { fontSize: "15px" },
+      linkText: { fontSize: "10px", },
     },
     small: {
       id: "small",
@@ -60,11 +60,11 @@ const SlidingPage = (props: SlidingPage) => {
   const resizeSlidingPage = contextSafe(() => {
     if (props.selected) {
       gsap.to(subtitleRef.current, { fontSize: currentSizes.subTile.fontSize, paddingTop: "0px" });
-      gsap.to(imageConRef.current, { width: currentSizes.image.width });
+      gsap.to(imageConRef.current, { width: currentSizes.image.width, height: currentSizes.image.height });
       gsap.to(linkConf.current, { fontSize: currentSizes.linkText.fontSize });
     } else {
       gsap.to(subtitleRef.current, { fontSize: '15px', paddingTop: "55px" });
-      gsap.to(imageConRef.current, { width: '15px' });
+      gsap.to(imageConRef.current, { width: '15px', height: '500px' });
       gsap.to(linkConf.current, { fontSize: "17px" });
     }
   });
