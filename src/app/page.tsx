@@ -130,7 +130,7 @@ const SlidingPage = (props: SlidingPage) => {
 
       <div className="flex pt-1 ">
 
-        {(props.selected ?? props.isMobile)&&
+        {(props.selected == true || props.isMobile == true)&&
           <div className="w-10 pt-4 pl-4  text-lg">
             {props.isMobile && !props.selected? props.pageSubtitle : "[" + props.pageNumber + "]"}
           </div>
