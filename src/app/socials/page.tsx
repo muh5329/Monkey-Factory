@@ -7,7 +7,7 @@ export default function SocialsPage
     <main className="flex items-center justify-center min-h-screen bg-blue-500  ">
       <div className='flex flex-col gap-4  ' >
 
-        <div className='rounded-full w-[200px] h-[200px] shadow-2xl overflow-hidden relative'>
+        <div className='rounded-full w-[200px] h-[200px] shadow-2xl overflow-hidden relative border-2 border-white-100'>
           <Image
             src="/images/me.png"
             layout='fill'
