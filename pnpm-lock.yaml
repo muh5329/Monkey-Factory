@@ -89,6 +89,9 @@ dependencies:
   tailwind-merge:
     specifier: ^2.3.0
     version: 2.3.0
+  tailwind-scrollbar-hide:
+    specifier: ^1.1.7
+    version: 1.1.7
   tailwindcss-animate:
     specifier: ^1.0.7
     version: 1.0.7(tailwindcss@3.4.3)
@@ -4552,6 +4555,10 @@ packages:
     resolution: {integrity: sha512-vkYrLpIP+lgR0tQCG6AP7zZXCTLc1Lnv/CCRT3BqJ9CZ3ui2++GPaGb1x/ILsINIMSYqqvrpqjUFsMNLlW99EA==}
     dependencies:
       '@babel/runtime': 7.24.6
+    dev: false
+
+  /tailwind-scrollbar-hide@1.1.7:
+    resolution: {integrity: sha512-X324n9OtpTmOMqEgDUEA/RgLrNfBF/jwJdctaPZDzB3mppxJk7TLIDmOreEDm1Bq4R9LSPu4Epf8VSdovNU+iA==}
     dev: false
 
   /tailwindcss-animate@1.0.7(tailwindcss@3.4.3):

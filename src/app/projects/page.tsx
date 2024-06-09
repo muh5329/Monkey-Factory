@@ -69,7 +69,7 @@ export default async function ProjectsPage() {
   //     "image": "/websites/mics.jpg",
   //     "link": "",
   //     "repo": "https://github.com/muh5329",
-  //     "tags": []
+  //     "tags": ["randdfsdom", "cfgd","randoms2rds", "cvsfs", "fgqklqw", "wqjk2rj"]
   //   },
   // ];
 

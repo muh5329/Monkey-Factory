@@ -82,8 +82,8 @@ export default function Board(props:Board) {
     const [projectList,setProjectList] = useState(props.projectList);
 
     return (<>
-        <div className='flex items-center justify-center gap-4 p-10'>
-          <Tags
+        <div className='flex overflow-x-auto items-center gap-4 p-10 w-[70%] scrollbar-hide ml-[40px] '>
+            <Tags
             selectedTags={selectedTags}
             unselectedTags={unselectedTags}
             setSelectedTags={setSelectedTags}
