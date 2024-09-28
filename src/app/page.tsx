@@ -257,7 +257,7 @@ export default function HomePage() {
 
   return (
     <main className={isMobile ? slidingPageClassMobile : slidingPageClass}>
-      <div ref={aboutRef} onClick={() => slidingPageOnClick(aboutRef)} className="w-[100%] bg-[url('/svg/Star+Pattern+3.svg')] animate-slide bg-red-400 pt-1 text-zinc-900 font-medium font-scopeone z-0  ">
+      <div ref={aboutRef} onClick={() => slidingPageOnClick(aboutRef)} className="w-[100%] bg-[url('/svg/starpattern3.svg')] animate-slide bg-red-400 pt-1 text-zinc-900 font-medium font-scopeone z-0  ">
         <SlidingPage
           optionalName="Muneeb Haq"
           pageNumber="01"
@@ -271,7 +271,7 @@ export default function HomePage() {
           currentSizes={currentSizes}
         />
       </div>
-      <div ref={projectsRef} onClick={() => slidingPageOnClick(projectsRef)} className="w-[180px] bg-[url('/svg/diamond-sunset.svg')] animate-pan bg-yellow-500 pt-1 text-zinc-900 font-medium font-scopeone z-0 ">
+      <div ref={projectsRef} onClick={() => slidingPageOnClick(projectsRef)} className="w-[180px] animate-pan bg-yellow-500 pt-1 text-zinc-900 font-medium font-scopeone z-0 ">
         <SlidingPage
           pageNumber="02"
           optionalName=". "
@@ -287,7 +287,7 @@ export default function HomePage() {
       </div>
 
 
-      <div ref={socialsRef} onClick={() => slidingPageOnClick(socialsRef)} className="w-[180px] bg-[url('/svg/protruding-squares.svg')] animate-pan bg-blue-500 pt-1 text-zinc-900 font-medium font-scopeone z-0">
+      <div ref={socialsRef} onClick={() => slidingPageOnClick(socialsRef)} className="w-[180px]  animate-pan bg-blue-500 pt-1 text-zinc-900 font-medium font-scopeone z-0">
         <SlidingPage
           pageNumber="03"
           optionalName=". "
