@@ -257,7 +257,7 @@ export default function HomePage() {
 
   return (
     <main className={isMobile ? slidingPageClassMobile : slidingPageClass}>
-      <div ref={aboutRef} onClick={() => slidingPageOnClick(aboutRef)} className="w-[100%] bg-[url('/svg/starpattern3.svg')] animate-slide bg-red-400 pt-1 text-zinc-900 font-medium font-scopeone z-0  ">
+      <div ref={aboutRef} onClick={() => slidingPageOnClick(aboutRef)} className="w-[100%]  animate-slide bg-red-400 pt-1 text-zinc-900 font-medium font-scopeone z-0  ">
         <SlidingPage
           optionalName="Muneeb Haq"
           pageNumber="01"
